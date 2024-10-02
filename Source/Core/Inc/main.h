@@ -57,24 +57,24 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define PA0_Pin GPIO_PIN_0
-#define PA0_GPIO_Port GPIOA
-#define PA1_Pin GPIO_PIN_1
-#define PA1_GPIO_Port GPIOA
-#define PA2_Pin GPIO_PIN_2
-#define PA2_GPIO_Port GPIOA
-#define PA3_Pin GPIO_PIN_3
-#define PA3_GPIO_Port GPIOA
-#define PA4_Pin GPIO_PIN_4
-#define PA4_GPIO_Port GPIOA
-#define PA5_Pin GPIO_PIN_5
-#define PA5_GPIO_Port GPIOA
-#define PA6_Pin GPIO_PIN_6
-#define PA6_GPIO_Port GPIOA
+#define SEG_A_Pin GPIO_PIN_0
+#define SEG_A_GPIO_Port GPIOA
+#define SEG_B_Pin GPIO_PIN_1
+#define SEG_B_GPIO_Port GPIOA
+#define SEG_C_Pin GPIO_PIN_2
+#define SEG_C_GPIO_Port GPIOA
+#define SEG_D_Pin GPIO_PIN_3
+#define SEG_D_GPIO_Port GPIOA
+#define SEG_E_Pin GPIO_PIN_4
+#define SEG_E_GPIO_Port GPIOA
+#define SEG_F_Pin GPIO_PIN_5
+#define SEG_F_GPIO_Port GPIOA
+#define SEG_G_Pin GPIO_PIN_6
+#define SEG_G_GPIO_Port GPIOA
 #define PA7_Pin GPIO_PIN_7
 #define PA7_GPIO_Port GPIOA
-#define PB0_Pin GPIO_PIN_0
-#define PB0_GPIO_Port GPIOB
+#define BUTTON_1_Pin GPIO_PIN_0
+#define BUTTON_1_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
