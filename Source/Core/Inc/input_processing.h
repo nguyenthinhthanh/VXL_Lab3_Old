@@ -9,8 +9,8 @@
 #define INC_INPUT_PROCESSING_H_
 
 #include "main.h"
+#include "timer.h"
 #include "input_reading.h"
-#include "led_display.h"
 
 void fsm_for_input_processing(void);
 

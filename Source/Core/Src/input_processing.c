@@ -9,37 +9,40 @@
 #include "input_processing.h"
 
 enum ButtonState{BUTTON_RELEASED, BUTTON_PRESSED, BUTTON_PRESSED_MORE_THAN_1_SECOND} ;
-enum ButtonState buttonState = BUTTON_RELEASED;
+enum ButtonState buttonState[N0_OF_BUTTONS] = {BUTTON_RELEASED};
+
 void fsm_for_input_processing(void){
-	switch(buttonState){
-	case BUTTON_RELEASED:
-		if(is_button_pressed(0)){
-			buttonState = BUTTON_PRESSED;
-			//INCREASE VALUE OF PORT A BY ONE UNIT
-			Led_Count++;
-			if(Led_Count > 9){
-				Led_Count = 0;
+	for(int i=0;i<N0_OF_BUTTONS;i++){
+		switch(buttonState[i]){
+		case BUTTON_RELEASED:
+			if(is_button_pressed(i)){
+				buttonState[i] = BUTTON_PRESSED;
+				// Increase value PORTA by one
 			}
-		}
-		break;
-	case BUTTON_PRESSED:
-		if(!is_button_pressed(0)){
-			buttonState = BUTTON_RELEASED;
-		} else {
-			if(is_button_pressed_1s(0)){
-				// set timer is here 500ms
-				buttonState = BUTTON_PRESSED_MORE_THAN_1_SECOND;
+			break;
+		case BUTTON_PRESSED:
+			if(!is_button_pressed(i)){
+				buttonState[i] = BUTTON_RELEASED;
+			} else {
+				if(is_button_pressed_1s(i)){
+					// Set timer 500ms for auto increase
+					setTimer(AUTO_INCREASE, 500);
+					buttonState[i] = BUTTON_PRESSED_MORE_THAN_1_SECOND;
+				}
 			}
+			break;
+		case BUTTON_PRESSED_MORE_THAN_1_SECOND:
+			if(!is_button_pressed(i)){
+				buttonState[i] = BUTTON_RELEASED;
+			}
+			else{
+				// If timer flag 500ms increase one value
+				if(getTimerFlags(AUTO_INCREASE)){
+					// Increase value PORTA by one
+					setTimer(AUTO_INCREASE, 500);
+				}
+			}
+			break;
 		}
-		break;
-	case BUTTON_PRESSED_MORE_THAN_1_SECOND:
-		if(!is_button_pressed(0)){
-			buttonState = BUTTON_RELEASED;
-		}
-		// To do
-		else{
-			// if timer flag 500ms increase one value
-		}
-		break;
 	}
 }

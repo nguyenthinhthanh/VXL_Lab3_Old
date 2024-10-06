@@ -1,1 +1,2 @@
-../Core/Src/led_display.c:12:6:display7SEG	16	static
+../Core/Src/led_display.c:13:7:display7SEG_13	16	static
+../Core/Src/led_display.c:123:7:display7SEG_24	16	static

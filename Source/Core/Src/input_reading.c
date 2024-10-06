@@ -7,8 +7,8 @@
 
 
 #include "main.h"
-//we aim to work with more than one buttons
-#define N0_OF_BUTTONS 				       1
+#include "input_reading.h"
+
 //timer interrupt duration is 10ms, so to pass 1 second,
 //we need to jump to the interrupt service routine 100 time
 #define DURATION_FOR_AUTO_INCREASING	   100
@@ -39,18 +39,30 @@ unsigned char is_button_pressed_1s(unsigned char index){
 void button_reading(void){
 	for(int i = 0; i < N0_OF_BUTTONS; i ++){
 		debounceButtonBuffer2[i] = debounceButtonBuffer1[i];
-		debounceButtonBuffer1[i] = HAL_GPIO_ReadPin(BUTTON_1_GPIO_Port, BUTTON_1_Pin);
+		// Chose button port
+		if(i == 0){
+			debounceButtonBuffer1[i] = HAL_GPIO_ReadPin(BUTTON_0_GPIO_Port, BUTTON_0_Pin);
+		}
+		else if(i == 1){
+			debounceButtonBuffer1[i] = HAL_GPIO_ReadPin(BUTTON_1_GPIO_Port, BUTTON_1_Pin);
+		}
+		else if( i == 2){
+			debounceButtonBuffer1[i] = HAL_GPIO_ReadPin(BUTTON_2_GPIO_Port, BUTTON_2_Pin);
+		}
+		else{
+			/*This is fault value of index button*/
+		}
 		if(debounceButtonBuffer1[i] == debounceButtonBuffer2[i]){
 			buttonBuffer[i] = debounceButtonBuffer1[i];
 			if(buttonBuffer[i] == BUTTON_IS_PRESSED){
-			//if a button is pressed, we start counting
+			// If a button is pressed, we start counting
 				if(counterForButtonPress1s[i] < DURATION_FOR_AUTO_INCREASING){
 					counterForButtonPress1s[i]++;
 				} else {
-				//the flag is turned on when 1 second has passed
-				//since the button is pressed.
+				// The flag is turned on when 1 second has passed
+				// since the button is pressed.
 					flagForButtonPress1s[i] = 1;
-					//todo
+					// To do
 				}
 			}
 			else {

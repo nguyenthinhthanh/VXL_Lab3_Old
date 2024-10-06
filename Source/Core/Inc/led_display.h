@@ -10,7 +10,8 @@
 
 #include "main.h"
 
-extern int Led_Count;
+extern int Led13_Count;
+extern int Led24_Count;
 
 void  display7SEG(int number);
 
