@@ -7,8 +7,8 @@
 
 #include "led_display.h"
 
-int Led13_Count = 5;
-int Led24_Count = 3;
+int Led13_Count;
+int Led24_Count;
 
 void  display7SEG_13(int number){
 	if(number == 0){

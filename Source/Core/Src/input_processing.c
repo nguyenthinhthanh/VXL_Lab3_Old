@@ -8,8 +8,7 @@
 
 #include "input_processing.h"
 
-enum ButtonState{BUTTON_RELEASED, BUTTON_PRESSED, BUTTON_PRESSED_MORE_THAN_1_SECOND} ;
-enum ButtonState buttonState[N0_OF_BUTTONS] = {BUTTON_RELEASED};
+enum ButtonState buttonState[N0_OF_BUTTONS] = {BUTTON_RELEASED,BUTTON_RELEASED,BUTTON_RELEASED};
 
 void fsm_for_input_processing(void){
 	for(int i=0;i<N0_OF_BUTTONS;i++){
@@ -26,7 +25,7 @@ void fsm_for_input_processing(void){
 			} else {
 				if(is_button_pressed_1s(i)){
 					// Set timer 500ms for auto increase
-					setTimer(AUTO_INCREASE, 500);
+					//setTimer(AUTO_INCREASE, 500);
 					buttonState[i] = BUTTON_PRESSED_MORE_THAN_1_SECOND;
 				}
 			}
@@ -37,10 +36,10 @@ void fsm_for_input_processing(void){
 			}
 			else{
 				// If timer flag 500ms increase one value
-				if(getTimerFlags(AUTO_INCREASE)){
+				/*if(getTimerFlags(AUTO_INCREASE)){
 					// Increase value PORTA by one
-					setTimer(AUTO_INCREASE, 500);
-				}
+					//setTimer(AUTO_INCREASE, 500);
+				}*/
 			}
 			break;
 		}
