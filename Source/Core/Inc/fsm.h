@@ -11,6 +11,7 @@
 #include "timer.h"
 #include "traffic.h"
 #include "led_display.h"
+#include "blinking_led.h"
 #include "input_reading.h"
 #include "input_processing.h"
 

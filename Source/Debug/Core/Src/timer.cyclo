@@ -1,3 +1,5 @@
-../Core/Src/timer.c:26:5:getTimerFlags	1
-../Core/Src/timer.c:30:6:setTimer	1
-../Core/Src/timer.c:35:6:runTimer	3
+../Core/Src/timer.c:27:5:getTimerFlags	1
+../Core/Src/timer.c:31:6:ignoreTimer	1
+../Core/Src/timer.c:35:6:activeTimer	1
+../Core/Src/timer.c:39:6:setTimer	1
+../Core/Src/timer.c:44:6:runTimer	4

@@ -9,7 +9,6 @@
 
 /*Default Mode*/
 int FSM_State;
-int first = 1;
 
 void setEnviromentStateInit(void){
 	Led13_Count = 5;
@@ -19,7 +18,10 @@ void setEnviromentStateInit(void){
 	display7SEG_24(Led24_Count);
 
 	/*Run immediate so delay when first time is 0*/
-	setTimer(DELAY_TIMER, 0);
+	setTimer(BLINKING_LED_RED_TIMER, (Time_LedRed_Duration * TIME_SCALER)/2);
+	setTimer(BLINKING_LED_YELLOW_TIMER, (Time_LedYellow_Duration * TIME_SCALER)/2);
+	setTimer(BLINKING_LED_GREEN_TIMER, (Time_LedGreen_Duration * TIME_SCALER)/2);
+
 	setEnviromentState0();
 	FSM_State = RED_GREEN_STATE_MODE1;
 }
@@ -27,6 +29,7 @@ void setEnviromentStateInit(void){
 void setEnviromentState0(void){
 	Led13_Count = 5;
 	Led24_Count = 3;
+	setTimer(DELAY_TIMER, 0);
 	setTimer(TRAFFIC_TIMER, 3000);
 }
 
@@ -46,7 +49,7 @@ void setEnviromentState3(void){
 }
 
 void setEnviromentState4(void){
-
+	/*May be ignore timer delay and timer traffic*/
 }
 
 void setEnviromentState5(void){
@@ -117,14 +120,18 @@ void doState3(void){
 }
 
 void doState4(void){
-	display7SEG_13(4);
+	/*Display two 7seg for time duration value
+	and one 7seg for mode becaue mode 1->4*/
+
+
 	if(buttonState[1] == BUTTON_PRESSED){
 		/*Increase time duration by one*/
-		FSM_State = NORMAL_STATE_MODE_2;
+		Time_LedRed_Duration++;
 	}
 
 	if(buttonState[2] == BUTTON_PRESSED){
 		/*Update blinking time duration*/
+		setTimer(BLINKING_LED_RED_TIMER, (Time_LedRed_Duration * TIME_SCALER)/2);
 	}
 }
 

@@ -115,6 +115,7 @@ int main(void)
 
 	fsm_for_input_processing();
 	runFSM();
+	runBlinkingLed();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
