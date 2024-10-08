@@ -223,20 +223,22 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, SEG13_A_Pin|SEG13_B_Pin|SEG13_C_Pin|SEG13_D_Pin
                           |SEG13_E_Pin|SEG13_F_Pin|SEG13_G_Pin|SEG24_A_Pin
                           |SEG24_B_Pin|SEG24_C_Pin|SEG24_D_Pin|SEG24_E_Pin
-                          |SEG24_F_Pin|SEG24_G_Pin, GPIO_PIN_RESET);
+                          |SEG24_F_Pin|SEG24_G_Pin|SEG_TIME_H_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, LED13_RED_Pin|LED13_YELLOW_Pin|LED13_GREEN_Pin|LED24_RED_Pin
-                          |LED24_YELLOW_Pin|LED24_GREEN_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, SEG_TIME_B_Pin|SEG_TIME_C_Pin|SEG_TIME_D_Pin|SEG_TIME_E_Pin
+                          |SEG_TIME_F_Pin|SEG_TIME_G_Pin|LED13_RED_Pin|LED13_YELLOW_Pin
+                          |LED13_GREEN_Pin|LED24_RED_Pin|LED24_YELLOW_Pin|LED24_GREEN_Pin
+                          |SEG_TIME_A_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : SEG13_A_Pin SEG13_B_Pin SEG13_C_Pin SEG13_D_Pin
                            SEG13_E_Pin SEG13_F_Pin SEG13_G_Pin SEG24_A_Pin
                            SEG24_B_Pin SEG24_C_Pin SEG24_D_Pin SEG24_E_Pin
-                           SEG24_F_Pin SEG24_G_Pin */
+                           SEG24_F_Pin SEG24_G_Pin SEG_TIME_H_Pin */
   GPIO_InitStruct.Pin = SEG13_A_Pin|SEG13_B_Pin|SEG13_C_Pin|SEG13_D_Pin
                           |SEG13_E_Pin|SEG13_F_Pin|SEG13_G_Pin|SEG24_A_Pin
                           |SEG24_B_Pin|SEG24_C_Pin|SEG24_D_Pin|SEG24_E_Pin
-                          |SEG24_F_Pin|SEG24_G_Pin;
+                          |SEG24_F_Pin|SEG24_G_Pin|SEG_TIME_H_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -248,10 +250,14 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : LED13_RED_Pin LED13_YELLOW_Pin LED13_GREEN_Pin LED24_RED_Pin
-                           LED24_YELLOW_Pin LED24_GREEN_Pin */
-  GPIO_InitStruct.Pin = LED13_RED_Pin|LED13_YELLOW_Pin|LED13_GREEN_Pin|LED24_RED_Pin
-                          |LED24_YELLOW_Pin|LED24_GREEN_Pin;
+  /*Configure GPIO pins : SEG_TIME_B_Pin SEG_TIME_C_Pin SEG_TIME_D_Pin SEG_TIME_E_Pin
+                           SEG_TIME_F_Pin SEG_TIME_G_Pin LED13_RED_Pin LED13_YELLOW_Pin
+                           LED13_GREEN_Pin LED24_RED_Pin LED24_YELLOW_Pin LED24_GREEN_Pin
+                           SEG_TIME_A_Pin */
+  GPIO_InitStruct.Pin = SEG_TIME_B_Pin|SEG_TIME_C_Pin|SEG_TIME_D_Pin|SEG_TIME_E_Pin
+                          |SEG_TIME_F_Pin|SEG_TIME_G_Pin|LED13_RED_Pin|LED13_YELLOW_Pin
+                          |LED13_GREEN_Pin|LED24_RED_Pin|LED24_YELLOW_Pin|LED24_GREEN_Pin
+                          |SEG_TIME_A_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

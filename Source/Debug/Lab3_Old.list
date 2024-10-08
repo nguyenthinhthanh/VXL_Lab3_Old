@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  00004020  2**0
                   CONTENTS, READONLY
- 12 .debug_info   000087d4  00000000  00000000  00004049  2**0
+ 12 .debug_info   000087f4  00000000  00000000  00004049  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 00001d05  00000000  00000000  0000c81d  2**0
+ 13 .debug_abbrev 00001d07  00000000  00000000  0000c83d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000ad8  00000000  00000000  0000e528  2**3
+ 14 .debug_aranges 00000ae0  00000000  00000000  0000e548  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000838  00000000  00000000  0000f000  2**0
+ 15 .debug_rnglists 0000083f  00000000  00000000  0000f028  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0001713e  00000000  00000000  0000f838  2**0
+ 16 .debug_macro  0001719e  00000000  00000000  0000f867  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000d036  00000000  00000000  00026976  2**0
+ 17 .debug_line   0000d10b  00000000  00000000  00026a05  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00082899  00000000  00000000  000339ac  2**0
+ 18 .debug_str    00082a59  00000000  00000000  00033b10  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000b6245  2**0
+ 19 .comment      00000043  00000000  00000000  000b6569  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00002a44  00000000  00000000  000b6288  2**2
+ 20 .debug_frame  00002a6c  00000000  00000000  000b65ac  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000058  00000000  00000000  000b8ccc  2**0
+ 21 .debug_line_str 00000058  00000000  00000000  000b9018  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -381,7 +381,7 @@ void setEnviromentState3(void){
 void setEnviromentState4(void){
  8000358:	b480      	push	{r7}
  800035a:	af00      	add	r7, sp, #0
-
+	/*May be ignore timer delay and timer traffic*/
 }
  800035c:	bf00      	nop
  800035e:	46bd      	mov	sp, r7
@@ -1286,7 +1286,7 @@ void button_reading(void){
 int Led13_Count;
 int Led24_Count;
 
-void  display7SEG_13(int number){
+void display7SEG_13(int number){
  80008b4:	b580      	push	{r7, lr}
  80008b6:	b082      	sub	sp, #8
  80008b8:	af00      	add	r7, sp, #0
@@ -1715,7 +1715,7 @@ void  display7SEG_13(int number){
 
 08000bd4 <display7SEG_24>:
 
-void  display7SEG_24(int number){
+void display7SEG_24(int number){
  8000bd4:	b580      	push	{r7, lr}
  8000bd6:	b082      	sub	sp, #8
  8000bd8:	af00      	add	r7, sp, #0
@@ -2478,30 +2478,30 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, SEG13_A_Pin|SEG13_B_Pin|SEG13_C_Pin|SEG13_D_Pin
  8001130:	2200      	movs	r2, #0
- 8001132:	f647 717f 	movw	r1, #32639	@ 0x7f7f
+ 8001132:	f64f 717f 	movw	r1, #65407	@ 0xff7f
  8001136:	481c      	ldr	r0, [pc, #112]	@ (80011a8 <MX_GPIO_Init+0xbc>)
  8001138:	f000 fce5 	bl	8001b06 <HAL_GPIO_WritePin>
                           |SEG13_E_Pin|SEG13_F_Pin|SEG13_G_Pin|SEG24_A_Pin
                           |SEG24_B_Pin|SEG24_C_Pin|SEG24_D_Pin|SEG24_E_Pin
-                          |SEG24_F_Pin|SEG24_G_Pin, GPIO_PIN_RESET);
+                          |SEG24_F_Pin|SEG24_G_Pin|SEG_TIME_H_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, LED13_RED_Pin|LED13_YELLOW_Pin|LED13_GREEN_Pin|LED24_RED_Pin
+  HAL_GPIO_WritePin(GPIOB, SEG_TIME_B_Pin|SEG_TIME_C_Pin|SEG_TIME_D_Pin|SEG_TIME_E_Pin
  800113c:	2200      	movs	r2, #0
- 800113e:	f44f 71fc 	mov.w	r1, #504	@ 0x1f8
+ 800113e:	f64f 71f8 	movw	r1, #65528	@ 0xfff8
  8001142:	481a      	ldr	r0, [pc, #104]	@ (80011ac <MX_GPIO_Init+0xc0>)
  8001144:	f000 fcdf 	bl	8001b06 <HAL_GPIO_WritePin>
 
   /*Configure GPIO pins : SEG13_A_Pin SEG13_B_Pin SEG13_C_Pin SEG13_D_Pin
                            SEG13_E_Pin SEG13_F_Pin SEG13_G_Pin SEG24_A_Pin
                            SEG24_B_Pin SEG24_C_Pin SEG24_D_Pin SEG24_E_Pin
-                           SEG24_F_Pin SEG24_G_Pin */
+                           SEG24_F_Pin SEG24_G_Pin SEG_TIME_H_Pin */
   GPIO_InitStruct.Pin = SEG13_A_Pin|SEG13_B_Pin|SEG13_C_Pin|SEG13_D_Pin
- 8001148:	f647 737f 	movw	r3, #32639	@ 0x7f7f
+ 8001148:	f64f 737f 	movw	r3, #65407	@ 0xff7f
  800114c:	60bb      	str	r3, [r7, #8]
                           |SEG13_E_Pin|SEG13_F_Pin|SEG13_G_Pin|SEG24_A_Pin
                           |SEG24_B_Pin|SEG24_C_Pin|SEG24_D_Pin|SEG24_E_Pin
-                          |SEG24_F_Pin|SEG24_G_Pin;
+                          |SEG24_F_Pin|SEG24_G_Pin|SEG_TIME_H_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
  800114e:	2301      	movs	r3, #1
  8001150:	60fb      	str	r3, [r7, #12]
@@ -2533,12 +2533,16 @@ static void MX_GPIO_Init(void)
  8001178:	480c      	ldr	r0, [pc, #48]	@ (80011ac <MX_GPIO_Init+0xc0>)
  800117a:	f000 fb31 	bl	80017e0 <HAL_GPIO_Init>
 
-  /*Configure GPIO pins : LED13_RED_Pin LED13_YELLOW_Pin LED13_GREEN_Pin LED24_RED_Pin
-                           LED24_YELLOW_Pin LED24_GREEN_Pin */
-  GPIO_InitStruct.Pin = LED13_RED_Pin|LED13_YELLOW_Pin|LED13_GREEN_Pin|LED24_RED_Pin
- 800117e:	f44f 73fc 	mov.w	r3, #504	@ 0x1f8
+  /*Configure GPIO pins : SEG_TIME_B_Pin SEG_TIME_C_Pin SEG_TIME_D_Pin SEG_TIME_E_Pin
+                           SEG_TIME_F_Pin SEG_TIME_G_Pin LED13_RED_Pin LED13_YELLOW_Pin
+                           LED13_GREEN_Pin LED24_RED_Pin LED24_YELLOW_Pin LED24_GREEN_Pin
+                           SEG_TIME_A_Pin */
+  GPIO_InitStruct.Pin = SEG_TIME_B_Pin|SEG_TIME_C_Pin|SEG_TIME_D_Pin|SEG_TIME_E_Pin
+ 800117e:	f64f 73f8 	movw	r3, #65528	@ 0xfff8
  8001182:	60bb      	str	r3, [r7, #8]
-                          |LED24_YELLOW_Pin|LED24_GREEN_Pin;
+                          |SEG_TIME_F_Pin|SEG_TIME_G_Pin|LED13_RED_Pin|LED13_YELLOW_Pin
+                          |LED13_GREEN_Pin|LED24_RED_Pin|LED24_YELLOW_Pin|LED24_GREEN_Pin
+                          |SEG_TIME_A_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
  8001184:	2301      	movs	r3, #1
  8001186:	60fb      	str	r3, [r7, #12]
