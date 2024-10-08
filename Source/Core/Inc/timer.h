@@ -12,10 +12,10 @@
 
 #define FREQUENCY				8000000	/*8Mhz frequencu*/
 
-#define MAX_TIMER				2
-#define DELAY_TIMER				0		/*1000ms for 7Seg*/
-#define TRAFFIC_TIMER			1		/*For time in traffic*/
-//#define AUTO_INCREASE			2		/*500ms increase value*/
+#define MAX_TIMER					2
+#define DELAY_TIMER					0		/*1000ms for 7Seg*/
+#define TRAFFIC_TIMER				1		/*For time in traffic*/
+//#define AUTO_INCREASE				2		/*500ms increase value*/
 //#define AUTO_MODE_CHANGE_TIMER	3		/*For 10s timer auto change mode*/
 
 extern int TIMER_CYCLE;

@@ -29,6 +29,8 @@
 /*Macro for mode 4*/
 #define NORMAL_STATE_MODE_4				6
 
+extern int FSM_State;
+
 void setEnviromentStateInit(void);
 
 void setEnviromentState0(void);

@@ -9,6 +9,7 @@
 
 /*Default Mode*/
 int FSM_State;
+int first = 1;
 
 void setEnviromentStateInit(void){
 	Led13_Count = 5;
@@ -17,7 +18,8 @@ void setEnviromentStateInit(void){
 	display7SEG_13(Led13_Count);
 	display7SEG_24(Led24_Count);
 
-	//setTimer(AUTO_INCREASE, 500);
+	/*Run immediate so delay when first time is 0*/
+	setTimer(DELAY_TIMER, 0);
 	setEnviromentState0();
 	FSM_State = RED_GREEN_STATE_MODE1;
 }
@@ -25,7 +27,6 @@ void setEnviromentStateInit(void){
 void setEnviromentState0(void){
 	Led13_Count = 5;
 	Led24_Count = 3;
-	setTimer(DELAY_TIMER, 1000);
 	setTimer(TRAFFIC_TIMER, 3000);
 }
 
@@ -56,27 +57,15 @@ void setEnviromentState6(void){
 
 }
 
-void setEnviromentState7(void){
-
-}
-
-void setEnviromentState8(void){
-
-}
-
-void setEnviromentState9(void){
-
-}
-
 void doState0(void){
 	doRedGreen_Traffic();
 
 	if(getTimerFlags(DELAY_TIMER)){
 
-		HAL_GPIO_WritePin(CHECK_GPIO_Port, CHECK_Pin, GPIO_PIN_RESET);
+		/*Just for debug
+		HAL_GPIO_WritePin(CHECK_GPIO_Port, CHECK_Pin, GPIO_PIN_RESET);*/
 		display7SEG_13(Led13_Count);
 		display7SEG_24(Led24_Count);
-
 
 		Led13_Count--;
 		Led24_Count--;
@@ -128,6 +117,7 @@ void doState3(void){
 }
 
 void doState4(void){
+	display7SEG_13(4);
 	if(buttonState[1] == BUTTON_PRESSED){
 		/*Increase time duration by one*/
 		FSM_State = NORMAL_STATE_MODE_2;
@@ -139,24 +129,13 @@ void doState4(void){
 }
 
 void doState5(void){
-
+	display7SEG_13(5);
 }
 
 void doState6(void){
-
+	display7SEG_13(6);
 }
 
-void doState7(void){
-
-}
-
-void doState8(void){
-
-}
-
-void doState9(void){
-
-}
 
 void runFSM(void){
 	switch(FSM_State){

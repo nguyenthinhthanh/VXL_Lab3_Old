@@ -34,11 +34,9 @@ void setTimer(int index, int duration){
 
 void runTimer(void){
 	for(int i=0;i<MAX_TIMER;i++){
-		if(Timer_Counter[i] > 0){
-			Timer_Counter[i]--;
-			if(Timer_Counter[i] <=0){
-				Timer_Flag[i] = 1;
-			}
+		Timer_Counter[i]--;
+		if(Timer_Counter[i] <= 0){
+			Timer_Flag[i] = 1;
 		}
 	}
 }

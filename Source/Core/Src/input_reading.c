@@ -16,7 +16,8 @@
 #define BUTTON_IS_RELEASED                 GPIO_PIN_SET
 //the buffer that the final result is stored after
 //debouncing
-static GPIO_PinState buttonBuffer[N0_OF_BUTTONS];
+//static GPIO_PinState buttonBuffer[N0_OF_BUTTONS];
+GPIO_PinState buttonBuffer[N0_OF_BUTTONS] = {GPIO_PIN_SET, GPIO_PIN_SET,GPIO_PIN_SET};
 //we define two buffers for debouncing
 static GPIO_PinState debounceButtonBuffer1[N0_OF_BUTTONS];
 static GPIO_PinState debounceButtonBuffer2[N0_OF_BUTTONS];
@@ -37,7 +38,7 @@ unsigned char is_button_pressed_1s(unsigned char index){
 }
 
 void button_reading(void){
-	for(int i = 0; i < N0_OF_BUTTONS; i ++){
+	for(int i = 0; i < N0_OF_BUTTONS; i++){
 		debounceButtonBuffer2[i] = debounceButtonBuffer1[i];
 		// Chose button port
 		if(i == 0){

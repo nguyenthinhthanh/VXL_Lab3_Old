@@ -8,8 +8,13 @@
 #ifndef INC_INPUT_READING_H_
 #define INC_INPUT_READING_H_
 
+#include "led_display.h"
+
 //we aim to work with more than one buttons
 #define N0_OF_BUTTONS 				       3
+
+/*Just for debug
+extern GPIO_PinState buttonBuffer[N0_OF_BUTTONS];*/
 
 unsigned char is_button_pressed(unsigned char index);
 unsigned char is_button_pressed_1s(unsigned char index);
