@@ -2980,14 +2980,14 @@ LOAD D:/STM32_Cube/STM32CubeIDE_1.15.1/STM32CubeIDE/plugins/com.st.stm32cube.ide
                 0x08000280       0x88 ./Core/Src/fsm.o
                 0x08000280                setEnviromentStateInit
  .text.setEnviromentState0
-                0x08000308       0x30 ./Core/Src/fsm.o
+                0x08000308       0x4c ./Core/Src/fsm.o
                 0x08000308                setEnviromentState0
  .text.setEnviromentState1
-                0x08000338       0x1c ./Core/Src/fsm.o
-                0x08000338                setEnviromentState1
+                0x08000354       0x1c ./Core/Src/fsm.o
+                0x08000354                setEnviromentState1
  .text.setEnviromentState2
-                0x08000354       0x44 ./Core/Src/fsm.o
-                0x08000354                setEnviromentState2
+                0x08000370       0x28 ./Core/Src/fsm.o
+                0x08000370                setEnviromentState2
  .text.setEnviromentState3
                 0x08000398       0x1c ./Core/Src/fsm.o
                 0x08000398                setEnviromentState3
@@ -3721,25 +3721,25 @@ LOAD D:/STM32_Cube/STM32CubeIDE_1.15.1/STM32CubeIDE/plugins/com.st.stm32cube.ide
  .debug_macro   0x00016e6f      0x198 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
  .debug_macro   0x00017007      0x197 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
 
-.debug_line     0x00000000     0xd1de
+.debug_line     0x00000000     0xd1df
  .debug_line    0x00000000      0x7ba ./Core/Src/blinking_led.o
- .debug_line    0x000007ba      0xa25 ./Core/Src/fsm.o
- .debug_line    0x000011df      0x777 ./Core/Src/input_processing.o
- .debug_line    0x00001956      0x7d4 ./Core/Src/input_reading.o
- .debug_line    0x0000212a      0x947 ./Core/Src/led_display.o
- .debug_line    0x00002a71      0x878 ./Core/Src/main.o
- .debug_line    0x000032e9      0x718 ./Core/Src/stm32f1xx_hal_msp.o
- .debug_line    0x00003a01      0x7b7 ./Core/Src/stm32f1xx_it.o
- .debug_line    0x000041b8      0x75b ./Core/Src/system_stm32f1xx.o
- .debug_line    0x00004913      0x765 ./Core/Src/timer.o
- .debug_line    0x00005078      0x74a ./Core/Src/traffic.o
- .debug_line    0x000057c2       0x78 ./Core/Startup/startup_stm32f103c6ux.o
- .debug_line    0x0000583a      0x988 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
- .debug_line    0x000061c2      0xb74 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
- .debug_line    0x00006d36      0xa0c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
- .debug_line    0x00007742      0xd91 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
- .debug_line    0x000084d3     0x3464 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
- .debug_line    0x0000b937     0x18a7 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
+ .debug_line    0x000007ba      0xa26 ./Core/Src/fsm.o
+ .debug_line    0x000011e0      0x777 ./Core/Src/input_processing.o
+ .debug_line    0x00001957      0x7d4 ./Core/Src/input_reading.o
+ .debug_line    0x0000212b      0x947 ./Core/Src/led_display.o
+ .debug_line    0x00002a72      0x878 ./Core/Src/main.o
+ .debug_line    0x000032ea      0x718 ./Core/Src/stm32f1xx_hal_msp.o
+ .debug_line    0x00003a02      0x7b7 ./Core/Src/stm32f1xx_it.o
+ .debug_line    0x000041b9      0x75b ./Core/Src/system_stm32f1xx.o
+ .debug_line    0x00004914      0x765 ./Core/Src/timer.o
+ .debug_line    0x00005079      0x74a ./Core/Src/traffic.o
+ .debug_line    0x000057c3       0x78 ./Core/Startup/startup_stm32f103c6ux.o
+ .debug_line    0x0000583b      0x988 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+ .debug_line    0x000061c3      0xb74 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+ .debug_line    0x00006d37      0xa0c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
+ .debug_line    0x00007743      0xd91 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+ .debug_line    0x000084d4     0x3464 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+ .debug_line    0x0000b938     0x18a7 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
 
 .debug_str      0x00000000    0x82ad6
  .debug_str     0x00000000    0x7fcbe ./Core/Src/blinking_led.o

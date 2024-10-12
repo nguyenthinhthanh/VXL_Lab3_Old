@@ -29,6 +29,14 @@ void setEnviromentStateInit(void){
 void setEnviromentState0(void){
 	Led13_Count = 5;
 	Led24_Count = 3;
+	/*Active timer*/
+	activeTimer(DELAY_TIMER);
+	activeTimer(TRAFFIC_TIMER);
+	ignoreTimer(BLINKING_LED_RED_TIMER);
+	ignoreTimer(BLINKING_LED_YELLOW_TIMER);
+	ignoreTimer(BLINKING_LED_GREEN_TIMER);
+	/*Disable 7Seg not use*/
+
 	setTimer(DELAY_TIMER, 0);
 	setTimer(TRAFFIC_TIMER, 3000);
 }
@@ -40,11 +48,6 @@ void setEnviromentState1(void){
 void setEnviromentState2(void){
 	Led13_Count = 3;
 	Led24_Count = 5;
-	activeTimer(DELAY_TIMER);
-	activeTimer(TRAFFIC_TIMER);
-	ignoreTimer(BLINKING_LED_RED_TIMER);
-	ignoreTimer(BLINKING_LED_YELLOW_TIMER);
-	ignoreTimer(BLINKING_LED_GREEN_TIMER);
 	setTimer(TRAFFIC_TIMER, 3000);
 }
 
