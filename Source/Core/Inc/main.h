@@ -79,18 +79,14 @@ void Error_Handler(void);
 #define BUTTON_1_GPIO_Port GPIOB
 #define BUTTON_2_Pin GPIO_PIN_2
 #define BUTTON_2_GPIO_Port GPIOB
-#define SEG_TIME_B_Pin GPIO_PIN_10
-#define SEG_TIME_B_GPIO_Port GPIOB
-#define SEG_TIME_C_Pin GPIO_PIN_11
-#define SEG_TIME_C_GPIO_Port GPIOB
-#define SEG_TIME_D_Pin GPIO_PIN_12
-#define SEG_TIME_D_GPIO_Port GPIOB
-#define SEG_TIME_E_Pin GPIO_PIN_13
-#define SEG_TIME_E_GPIO_Port GPIOB
-#define SEG_TIME_F_Pin GPIO_PIN_14
-#define SEG_TIME_F_GPIO_Port GPIOB
-#define SEG_TIME_G_Pin GPIO_PIN_15
-#define SEG_TIME_G_GPIO_Port GPIOB
+#define EN0_Pin GPIO_PIN_12
+#define EN0_GPIO_Port GPIOB
+#define EN1_Pin GPIO_PIN_13
+#define EN1_GPIO_Port GPIOB
+#define EN2_Pin GPIO_PIN_14
+#define EN2_GPIO_Port GPIOB
+#define EN3_Pin GPIO_PIN_15
+#define EN3_GPIO_Port GPIOB
 #define SEG24_A_Pin GPIO_PIN_8
 #define SEG24_A_GPIO_Port GPIOA
 #define SEG24_B_Pin GPIO_PIN_9
@@ -117,8 +113,6 @@ void Error_Handler(void);
 #define LED24_YELLOW_GPIO_Port GPIOB
 #define LED24_GREEN_Pin GPIO_PIN_8
 #define LED24_GREEN_GPIO_Port GPIOB
-#define SEG_TIME_A_Pin GPIO_PIN_9
-#define SEG_TIME_A_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

@@ -143,7 +143,7 @@ void doState4(void){
 	/*Display two 7seg for time duration value
 	and one 7seg for mode becaue mode 1->4*/
 	display7SEG_13((int)(Time_LedRed_Duration_Temp / 10));
-	display7SEG_Time((int)(Time_LedRed_Duration_Temp % 10));
+	//display7SEG_Time((int)(Time_LedRed_Duration_Temp % 10));
 	/*Display mode*/
 	display7SEG_24(FSM_State - 2);
 
@@ -167,7 +167,7 @@ void doState5(void){
 	/*Display two 7seg for time duration value
 	and one 7seg for mode becaue mode 1->4*/
 	display7SEG_13((int)(Time_LedYellow_Duration_Temp / 10));
-	display7SEG_Time((int)(Time_LedYellow_Duration_Temp % 10));
+	//display7SEG_Time((int)(Time_LedYellow_Duration_Temp % 10));
 	/*Display mode*/
 	display7SEG_24(FSM_State - 2);
 
@@ -191,7 +191,7 @@ void doState6(void){
 	/*Display two 7seg for time duration value
 	and one 7seg for mode becaue mode 1->4*/
 	display7SEG_13((int)(Time_LedGreen_Duration_Temp / 10));
-	display7SEG_Time((int)(Time_LedGreen_Duration_Temp % 10));
+	//display7SEG_Time((int)(Time_LedGreen_Duration_Temp % 10));
 	/*Display mode*/
 	display7SEG_24(FSM_State - 2);
 
