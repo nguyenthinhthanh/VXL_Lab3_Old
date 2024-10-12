@@ -20,6 +20,10 @@ extern int Time_LedRed_Duration;
 extern int Time_LedYellow_Duration;
 extern int Time_LedGreen_Duration;
 
+extern int Time_LedRed_Duration_Temp;
+extern int Time_LedYellow_Duration_Temp;
+extern int Time_LedGreen_Duration_Temp;
+
 void runBlinkingLed(void);
 
 #endif /* INC_BLINKING_LED_H_ */

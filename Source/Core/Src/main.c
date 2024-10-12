@@ -62,7 +62,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if(htim->Instance == TIM2){
 		button_reading();
-		runTimer();
+		//runTimer();
 		/*Just for debug
 		HAL_GPIO_TogglePin(CHECK_GPIO_Port, CHECK_Pin);*/
 	}
@@ -105,7 +105,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setEnviromentStateInit();
+  //setEnviromentStateInit();
   HAL_TIM_Base_Start_IT(&htim2);
   while (1)
   {
@@ -113,9 +113,13 @@ int main(void)
 	//display7SEG_13(FSM_State);
 	//display7SEG_24(buttonState[0]);
 
-	fsm_for_input_processing();
-	runFSM();
-	runBlinkingLed();
+	//fsm_for_input_processing();
+	//runFSM();
+	if(is_button_pressed(0)){
+		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+		buttonBuffer[0] = 0;
+	}
+	//runBlinkingLed();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -221,9 +225,9 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, SEG13_A_Pin|SEG13_B_Pin|SEG13_C_Pin|SEG13_D_Pin
-                          |SEG13_E_Pin|SEG13_F_Pin|SEG13_G_Pin|SEG24_A_Pin
-                          |SEG24_B_Pin|SEG24_C_Pin|SEG24_D_Pin|SEG24_E_Pin
-                          |SEG24_F_Pin|SEG24_G_Pin|SEG_TIME_H_Pin, GPIO_PIN_RESET);
+                          |SEG13_E_Pin|SEG13_F_Pin|SEG13_G_Pin|LED_Pin
+                          |SEG24_A_Pin|SEG24_B_Pin|SEG24_C_Pin|SEG24_D_Pin
+                          |SEG24_E_Pin|SEG24_F_Pin|SEG24_G_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SEG_TIME_B_Pin|SEG_TIME_C_Pin|SEG_TIME_D_Pin|SEG_TIME_E_Pin
@@ -232,13 +236,13 @@ static void MX_GPIO_Init(void)
                           |SEG_TIME_A_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : SEG13_A_Pin SEG13_B_Pin SEG13_C_Pin SEG13_D_Pin
-                           SEG13_E_Pin SEG13_F_Pin SEG13_G_Pin SEG24_A_Pin
-                           SEG24_B_Pin SEG24_C_Pin SEG24_D_Pin SEG24_E_Pin
-                           SEG24_F_Pin SEG24_G_Pin SEG_TIME_H_Pin */
+                           SEG13_E_Pin SEG13_F_Pin SEG13_G_Pin LED_Pin
+                           SEG24_A_Pin SEG24_B_Pin SEG24_C_Pin SEG24_D_Pin
+                           SEG24_E_Pin SEG24_F_Pin SEG24_G_Pin */
   GPIO_InitStruct.Pin = SEG13_A_Pin|SEG13_B_Pin|SEG13_C_Pin|SEG13_D_Pin
-                          |SEG13_E_Pin|SEG13_F_Pin|SEG13_G_Pin|SEG24_A_Pin
-                          |SEG24_B_Pin|SEG24_C_Pin|SEG24_D_Pin|SEG24_E_Pin
-                          |SEG24_F_Pin|SEG24_G_Pin|SEG_TIME_H_Pin;
+                          |SEG13_E_Pin|SEG13_F_Pin|SEG13_G_Pin|LED_Pin
+                          |SEG24_A_Pin|SEG24_B_Pin|SEG24_C_Pin|SEG24_D_Pin
+                          |SEG24_E_Pin|SEG24_F_Pin|SEG24_G_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

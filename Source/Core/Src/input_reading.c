@@ -21,6 +21,7 @@ GPIO_PinState buttonBuffer[N0_OF_BUTTONS] = {GPIO_PIN_SET, GPIO_PIN_SET,GPIO_PIN
 //we define two buffers for debouncing
 static GPIO_PinState debounceButtonBuffer1[N0_OF_BUTTONS];
 static GPIO_PinState debounceButtonBuffer2[N0_OF_BUTTONS];
+static GPIO_PinState debounceButtonBuffer3[N0_OF_BUTTONS];
 //we define a flag for a button pressed more than 1 second.
 static uint8_t flagForButtonPress1s[N0_OF_BUTTONS];
 //we define counter for automatically increasing the value
@@ -39,6 +40,7 @@ unsigned char is_button_pressed_1s(unsigned char index){
 
 void button_reading(void){
 	for(int i = 0; i < N0_OF_BUTTONS; i++){
+		debounceButtonBuffer3[i] = debounceButtonBuffer2[i];
 		debounceButtonBuffer2[i] = debounceButtonBuffer1[i];
 		// Chose button port
 		if(i == 0){
@@ -53,7 +55,7 @@ void button_reading(void){
 		else{
 			/*This is fault value of index button*/
 		}
-		if(debounceButtonBuffer1[i] == debounceButtonBuffer2[i]){
+		if((debounceButtonBuffer1[i] == debounceButtonBuffer2[i]) && (debounceButtonBuffer2[i] == debounceButtonBuffer3[i])){
 			buttonBuffer[i] = debounceButtonBuffer1[i];
 			if(buttonBuffer[i] == BUTTON_IS_PRESSED){
 			// If a button is pressed, we start counting

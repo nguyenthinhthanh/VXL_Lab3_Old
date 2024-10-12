@@ -13,6 +13,7 @@
 extern int Led13_Count;
 extern int Led24_Count;
 
+
 void display7SEG_13(int number);
 
 void display7SEG_24(int number);

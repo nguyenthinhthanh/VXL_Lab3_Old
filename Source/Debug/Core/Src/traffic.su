@@ -1,4 +1,5 @@
-../Core/Src/traffic.c:10:6:doRedGreen_Traffic	8	static
-../Core/Src/traffic.c:22:6:doRedYellow_Traffic	8	static
-../Core/Src/traffic.c:28:6:doGreenRed_Traffic	8	static
-../Core/Src/traffic.c:38:6:doYellowRed_Traffic	8	static
+../Core/Src/traffic.c:10:6:clearAllTraffic	8	static
+../Core/Src/traffic.c:20:6:doRedGreen_Traffic	8	static
+../Core/Src/traffic.c:32:6:doRedYellow_Traffic	8	static
+../Core/Src/traffic.c:38:6:doGreenRed_Traffic	8	static
+../Core/Src/traffic.c:48:6:doYellowRed_Traffic	8	static

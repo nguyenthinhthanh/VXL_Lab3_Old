@@ -13,6 +13,8 @@
 //we aim to work with more than one buttons
 #define N0_OF_BUTTONS 				       3
 
+extern GPIO_PinState buttonBuffer[N0_OF_BUTTONS];
+
 /*Just for debug
 extern GPIO_PinState buttonBuffer[N0_OF_BUTTONS];*/
 

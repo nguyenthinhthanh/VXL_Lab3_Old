@@ -14,6 +14,8 @@
 #define TIME_GREEN		3
 #define TIME_YELLOW		2
 
+void clearAllTraffic(void);
+
 void doRedGreen_Traffic(void);
 
 void doRedYellow_Traffic(void);

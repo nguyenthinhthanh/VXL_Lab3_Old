@@ -12,7 +12,7 @@
 
 #define FREQUENCY				8000000	/*8Mhz frequencu*/
 
-#define MAX_TIMER					5
+#define MAX_TIMER					1
 #define DELAY_TIMER					0		/*1000ms for 7Seg*/
 #define TRAFFIC_TIMER				1		/*For time in traffic*/
 #define BLINKING_LED_RED_TIMER		2		/*For blinking led red*/
