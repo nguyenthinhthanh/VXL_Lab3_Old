@@ -17,27 +17,41 @@
 //the buffer that the final result is stored after
 //debouncing
 //static GPIO_PinState buttonBuffer[N0_OF_BUTTONS];
-GPIO_PinState buttonBuffer[N0_OF_BUTTONS] = {GPIO_PIN_SET, GPIO_PIN_SET,GPIO_PIN_SET};
+static GPIO_PinState buttonBuffer[N0_OF_BUTTONS] = {BUTTON_IS_RELEASED};
 //we define two buffers for debouncing
-static GPIO_PinState debounceButtonBuffer1[N0_OF_BUTTONS];
-static GPIO_PinState debounceButtonBuffer2[N0_OF_BUTTONS];
-static GPIO_PinState debounceButtonBuffer3[N0_OF_BUTTONS];
+static GPIO_PinState debounceButtonBuffer1[N0_OF_BUTTONS] = {BUTTON_IS_RELEASED};
+static GPIO_PinState debounceButtonBuffer2[N0_OF_BUTTONS] = {BUTTON_IS_RELEASED};
+static GPIO_PinState debounceButtonBuffer3[N0_OF_BUTTONS] = {BUTTON_IS_RELEASED};
 //we define a flag for a button pressed more than 1 second.
-static uint8_t flagForButtonPress1s[N0_OF_BUTTONS];
+static uint8_t flagForButtonPress[N0_OF_BUTTONS] = {0};
+static uint8_t flagForButtonPress1s[N0_OF_BUTTONS] = {0};
 //we define counter for automatically increasing the value
 //after the button is pressed more than 1 second.
-static uint16_t counterForButtonPress1s[N0_OF_BUTTONS];
+static uint16_t counterForButtonPress1s[N0_OF_BUTTONS] = {0};
 
 unsigned char is_button_pressed(uint8_t index){
 	if(index >= N0_OF_BUTTONS) return 0;
-	return (buttonBuffer[index] == BUTTON_IS_PRESSED);
+
+	if(flagForButtonPress[index]){
+		flagForButtonPress[index] = 0;
+		return 1;
+	}
+
+	return 0;
 }
 
 unsigned char is_button_pressed_1s(unsigned char index){
 	if(index >= N0_OF_BUTTONS) return 0xff;
-	return (flagForButtonPress1s[index] == 1);
+
+	if(flagForButtonPress1s[index]){
+		flagForButtonPress1s[index] = 0;
+		return 1;
+	}
+
+	return 0;
 }
 
+/*Many bug in input_reading :))*/
 void button_reading(void){
 	for(int i = 0; i < N0_OF_BUTTONS; i++){
 		debounceButtonBuffer3[i] = debounceButtonBuffer2[i];
@@ -55,25 +69,54 @@ void button_reading(void){
 		else{
 			/*This is fault value of index button*/
 		}
-		if((debounceButtonBuffer1[i] == debounceButtonBuffer2[i]) && (debounceButtonBuffer2[i] == debounceButtonBuffer3[i])){
-			buttonBuffer[i] = debounceButtonBuffer1[i];
-			if(buttonBuffer[i] == BUTTON_IS_PRESSED){
-			// If a button is pressed, we start counting
-				if(counterForButtonPress1s[i] < DURATION_FOR_AUTO_INCREASING){
-					counterForButtonPress1s[i]++;
-				} else {
-				// The flag is turned on when 1 second has passed
-				// since the button is pressed.
-					flagForButtonPress1s[i] = 1;
-					// To do
+
+		if((debounceButtonBuffer1[i] == debounceButtonBuffer2[i]) &&
+				(debounceButtonBuffer2[i] == debounceButtonBuffer3[i])){
+			if(debounceButtonBuffer1[i] != buttonBuffer[i]){
+				buttonBuffer[i] = debounceButtonBuffer1[i];
+				if(buttonBuffer[i] == BUTTON_IS_PRESSED){
+					counterForButtonPress1s[i] = DURATION_FOR_AUTO_INCREASING;
+					flagForButtonPress[i] = 1;
 				}
 			}
-			else {
-				counterForButtonPress1s[i] = 0;
-				flagForButtonPress1s[i] = 0;
+			else{
+				counterForButtonPress1s[i]--;
+				if(counterForButtonPress1s <= 0){
+					counterForButtonPress1s[i] = DURATION_FOR_AUTO_INCREASING;
+					if(buttonBuffer[i] == BUTTON_IS_PRESSED){
+						flagForButtonPress1s[i] = 1;
+					}
+				}
 			}
 		}
 	}
 }
 
+/*
+KeyReg2 = KeyReg1;
+KeyReg1 = KeyReg0;
+// Add your key
+KeyReg0 = HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin);
+
+ if ((KeyReg1 == KeyReg0) && (KeyReg1 == KeyReg2)){
+	    if (KeyReg2 != KeyReg3){
+			KeyReg3 = KeyReg2;
+			if (KeyReg3 == PRESSED_STATE){
+				TimeOutForKeyPress = 500;
+				//subKeyProcess();
+				button1_flag = 1;
+			}
+	    }
+		else{
+			TimeOutForKeyPress --;
+			if (TimeOutForKeyPress == 0){
+				TimeOutForKeyPress = 500;
+				if (KeyReg3 == PRESSED_STATE){
+					//subKeyProcess();
+					button1_flag = 1;
+				}
+			}
+		}
+	}
+*/
 

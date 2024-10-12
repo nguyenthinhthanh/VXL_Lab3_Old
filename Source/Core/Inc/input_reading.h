@@ -13,10 +13,8 @@
 //we aim to work with more than one buttons
 #define N0_OF_BUTTONS 				       3
 
-extern GPIO_PinState buttonBuffer[N0_OF_BUTTONS];
-
-/*Just for debug
-extern GPIO_PinState buttonBuffer[N0_OF_BUTTONS];*/
+/*Just for debug*/
+/*extern uint8_t flagForButtonPress[N0_OF_BUTTONS];*/
 
 unsigned char is_button_pressed(unsigned char index);
 unsigned char is_button_pressed_1s(unsigned char index);

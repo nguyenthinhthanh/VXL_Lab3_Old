@@ -62,7 +62,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if(htim->Instance == TIM2){
 		button_reading();
-		//runTimer();
+		runTimer();
 		/*Just for debug
 		HAL_GPIO_TogglePin(CHECK_GPIO_Port, CHECK_Pin);*/
 	}
@@ -105,21 +105,20 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  //setEnviromentStateInit();
+  setEnviromentStateInit();
   HAL_TIM_Base_Start_IT(&htim2);
   while (1)
   {
 	/*Just for debug*/
 	//display7SEG_13(FSM_State);
 	//display7SEG_24(buttonState[0]);
+//	if(is_button_pressed(0)){
+//		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+//	}
 
-	//fsm_for_input_processing();
-	//runFSM();
-	if(is_button_pressed(0)){
-		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-		buttonBuffer[0] = 0;
-	}
-	//runBlinkingLed();
+	fsm_for_input_processing();
+	runFSM();
+	runBlinkingLed();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

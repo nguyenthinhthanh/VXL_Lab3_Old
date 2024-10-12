@@ -156,7 +156,7 @@ void doState4(void){
 	if(is_button_pressed(2)){
 		/*Update blinking time duration*/
 		Time_LedRed_Duration = Time_LedRed_Duration_Temp;
-		//setTimer(BLINKING_LED_RED_TIMER, (Time_LedRed_Duration * TIME_SCALER)/2);
+		setTimer(BLINKING_LED_RED_TIMER, (Time_LedRed_Duration * TIME_SCALER)/2);
 	}
 }
 
