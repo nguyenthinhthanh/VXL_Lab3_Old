@@ -29,6 +29,10 @@ static uint16_t counterForButtonPress1s[N0_OF_BUTTONS];
 
 unsigned char is_button_pressed(uint8_t index){
 	if(index >= N0_OF_BUTTONS) return 0;
+	/* Bug in here because the button is not stable
+	 * so if we use direct value in buttonBuffer
+	 * this will false value
+	 */
 	return (buttonBuffer[index] == BUTTON_IS_PRESSED);
 }
 
