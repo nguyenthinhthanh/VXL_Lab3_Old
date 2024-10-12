@@ -116,6 +116,10 @@ int main(void)
 //		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 //	}
 
+	/* This branch just for implement scanning 7Seg led
+	 * and debug when it run wrong
+	 */
+
 	fsm_for_input_processing();
 	runFSM();
 	runBlinkingLed();
