@@ -13,11 +13,14 @@ int FSM_State;
 void setEnviromentStateInit(void){
 	Led13_Count = 5;
 	Led24_Count = 3;
-	/*7Seg display immediate*/
-	display7SEG_13(Led13_Count);
-	display7SEG_24(Led24_Count);
 
-	/*Run immediate so delay when first time is 0*/
+	/*Update 7Seg buffer for scanning*/
+	updateLedBuffer(0, Led13_Count);
+	updateLedBuffer(1, 0);				/*In mode 1,2 this 7Seg is 0*/
+	updateLedBuffer(2, 0);				/*In mode 1,2 this 7Seg is 0*/
+	updateLedBuffer(3, Led24_Count);
+
+	/*Set timer for blinking led*/
 	setTimer(BLINKING_LED_RED_TIMER, (Time_LedRed_Duration * TIME_SCALER)/2);
 	setTimer(BLINKING_LED_YELLOW_TIMER, (Time_LedYellow_Duration * TIME_SCALER)/2);
 	setTimer(BLINKING_LED_GREEN_TIMER, (Time_LedGreen_Duration * TIME_SCALER)/2);
@@ -29,13 +32,29 @@ void setEnviromentStateInit(void){
 void setEnviromentState0(void){
 	Led13_Count = 5;
 	Led24_Count = 3;
+
+	/*Enable 7Seg we use and disable 7Seg we not use*/
+	disable7SEG(1);
+	disable7SEG(2);
+	enable7SEGNoClear(0);
+	enable7SEGNoClear(3);
+
+	/*7Seg display immediate*/
+	display7SEG_13(Led13_Count);
+	display7SEG_24(Led24_Count);
+
 	/*Active timer*/
 	activeTimer(DELAY_TIMER);
 	activeTimer(TRAFFIC_TIMER);
 	ignoreTimer(BLINKING_LED_RED_TIMER);
 	ignoreTimer(BLINKING_LED_YELLOW_TIMER);
 	ignoreTimer(BLINKING_LED_GREEN_TIMER);
-	/*Disable 7Seg not use*/
+
+	/*We not use scanning 7Seg in Mode 1*/
+	ignoreTimer(SEVENT_SEG_SCAN_TIMER);
+
+	/*Set timer for scanning 7Seg for reset counter value*/
+	setTimer(SEVENT_SEG_SCAN_TIMER, DURATION_FOR_SEVENT_SEG_SCAN_LED);
 
 	setTimer(DELAY_TIMER, 0);
 	setTimer(TRAFFIC_TIMER, 3000);
@@ -62,6 +81,8 @@ void setEnviromentState4(void){
 	/*Ignore timer delay and timer traffic*/
 	ignoreTimer(DELAY_TIMER);
 	ignoreTimer(TRAFFIC_TIMER);
+
+	activeTimer(SEVENT_SEG_SCAN_TIMER);
 }
 
 void setEnviromentState5(void){
@@ -87,11 +108,15 @@ void doState0(void){
 
 		/*Just for debug
 		HAL_GPIO_WritePin(CHECK_GPIO_Port, CHECK_Pin, GPIO_PIN_RESET);*/
+
 		display7SEG_13(Led13_Count);
 		display7SEG_24(Led24_Count);
 
 		Led13_Count--;
 		Led24_Count--;
+
+		//updateLedBuffer(0, Led13_Count);
+		//updateLedBuffer(3, Led24_Count);
 
 		setTimer(DELAY_TIMER, 1000);
 	}
@@ -107,6 +132,9 @@ void doState1(void){
 		Led13_Count--;
 		Led24_Count--;
 
+		//updateLedBuffer(0, Led13_Count);
+		//updateLedBuffer(3, Led24_Count);
+
 		setTimer(DELAY_TIMER, 1000);
 	}
 }
@@ -120,6 +148,9 @@ void doState2(void){
 
 		Led13_Count--;
 		Led24_Count--;
+
+		//updateLedBuffer(0, Led13_Count);
+		//updateLedBuffer(3, Led24_Count);
 
 		setTimer(DELAY_TIMER, 1000);
 	}
@@ -135,6 +166,9 @@ void doState3(void){
 		Led13_Count--;
 		Led24_Count--;
 
+		//updateLedBuffer(0, Led13_Count);
+		//updateLedBuffer(3, Led24_Count);
+
 		setTimer(DELAY_TIMER, 1000);
 	}
 }
@@ -142,12 +176,16 @@ void doState3(void){
 void doState4(void){
 	/*Display two 7seg for time duration value
 	and one 7seg for mode becaue mode 1->4*/
-	display7SEG_13((int)(Time_LedRed_Duration_Temp / 10));
+	//display7SEG_13((int)(Time_LedRed_Duration_Temp / 10));
 	//display7SEG_Time((int)(Time_LedRed_Duration_Temp % 10));
 	/*Display mode*/
-	display7SEG_24(FSM_State - 2);
+	//display7SEG_24(FSM_State - 2);
+	updateLedBuffer(0, Time_LedRed_Duration_Temp / 10);
+	updateLedBuffer(1, Time_LedRed_Duration_Temp % 10);
+	updateLedBuffer(2, (FSM_State - 2) / 10);
+	updateLedBuffer(3, (FSM_State - 2) % 10);
 
-	if(is_button_pressed(1)){
+	if(buttonState[1] == BUTTON_PRESSED){
 		/*Increase time duration by one*/
 		Time_LedRed_Duration_Temp++;
 
@@ -156,7 +194,7 @@ void doState4(void){
 		}
 	}
 
-	if(is_button_pressed(2)){
+	if(buttonState[2] == BUTTON_PRESSED){
 		/*Update blinking time duration*/
 		Time_LedRed_Duration = Time_LedRed_Duration_Temp;
 		setTimer(BLINKING_LED_RED_TIMER, (Time_LedRed_Duration * TIME_SCALER)/2);
@@ -166,10 +204,15 @@ void doState4(void){
 void doState5(void){
 	/*Display two 7seg for time duration value
 	and one 7seg for mode becaue mode 1->4*/
-	display7SEG_13((int)(Time_LedYellow_Duration_Temp / 10));
+	//display7SEG_13((int)(Time_LedYellow_Duration_Temp / 10));
 	//display7SEG_Time((int)(Time_LedYellow_Duration_Temp % 10));
 	/*Display mode*/
-	display7SEG_24(FSM_State - 2);
+	//display7SEG_24(FSM_State - 2);
+
+	updateLedBuffer(0, Time_LedYellow_Duration_Temp / 10);
+	updateLedBuffer(1, Time_LedYellow_Duration_Temp % 10);
+	updateLedBuffer(2, (FSM_State - 2) / 10);
+	updateLedBuffer(3, (FSM_State - 2) % 10);
 
 	if(buttonState[1] == BUTTON_PRESSED){
 		/*Increase time duration by one*/
@@ -190,10 +233,15 @@ void doState5(void){
 void doState6(void){
 	/*Display two 7seg for time duration value
 	and one 7seg for mode becaue mode 1->4*/
-	display7SEG_13((int)(Time_LedGreen_Duration_Temp / 10));
+	//display7SEG_13((int)(Time_LedGreen_Duration_Temp / 10));
 	//display7SEG_Time((int)(Time_LedGreen_Duration_Temp % 10));
 	/*Display mode*/
-	display7SEG_24(FSM_State - 2);
+	//display7SEG_24(FSM_State - 2);
+
+	updateLedBuffer(0, Time_LedGreen_Duration_Temp / 10);
+	updateLedBuffer(1, Time_LedGreen_Duration_Temp % 10);
+	updateLedBuffer(2, (FSM_State - 2) / 10);
+	updateLedBuffer(3, (FSM_State - 2) % 10);
 
 	if(buttonState[1] == BUTTON_PRESSED){
 		/*Increase time duration by one*/

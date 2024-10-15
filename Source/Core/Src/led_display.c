@@ -19,6 +19,42 @@ void updateLedBuffer(int index, int value){
 	led_buffer[index] = value;
 }
 
+void disable7SEG(int index){
+	if(index == 0){
+		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, GPIO_PIN_SET);
+	}
+	else if(index == 1){
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, GPIO_PIN_SET);
+	}
+	else if(index == 2){
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, GPIO_PIN_SET);
+	}
+	else if(index == 3){
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, GPIO_PIN_SET);
+	}
+	else{
+
+	}
+}
+
+void enable7SEGNoClear(int index){
+	if(index == 0){
+		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, GPIO_PIN_RESET);
+	}
+	else if(index == 1){
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, GPIO_PIN_RESET);
+	}
+	else if(index == 2){
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, GPIO_PIN_RESET);
+	}
+	else if(index == 3){
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, GPIO_PIN_RESET);
+	}
+	else{
+
+	}
+}
+
 void enable7SEG(int index){
 	if(index == 0){
 		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, GPIO_PIN_RESET);

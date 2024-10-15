@@ -118,6 +118,7 @@ int main(void)
 
 	fsm_for_input_processing();
 	runFSM();
+	run7Seg();
 	runBlinkingLed();
     /* USER CODE END WHILE */
 

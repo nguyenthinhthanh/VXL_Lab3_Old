@@ -11,16 +11,20 @@
 #include "main.h"
 #include "timer.h"
 
-#define	DURATION_FOR_SEVENT_SEG_SCAN_LED	50	/*50ms for scanning 7Seg led*/
+#define	DURATION_FOR_SEVENT_SEG_SCAN_LED	250	/*50ms for scanning 7Seg led*/
 
 extern int Led13_Count;
 extern int Led24_Count;
 
 void updateLedBuffer(int index, int value);
 
+void disable7SEG(int index);
+
+void enable7SEGNoClear(int index);
+
 void enable7SEG(int index);
 
-void display7SEG(int index);
+void display7SEG(int number);
 
 void display7SEG_13(int number);
 
