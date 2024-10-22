@@ -12,12 +12,13 @@
 
 #define FREQUENCY				8000000	/*8Mhz frequencu*/
 
-#define MAX_TIMER					5
+#define MAX_TIMER					6
 #define DELAY_TIMER					0		/*1000ms for 7Seg*/
 #define TRAFFIC_TIMER				1		/*For time in traffic*/
-#define BLINKING_LED_RED_TIMER		2		/*For blinking led red*/
-#define BLINKING_LED_YELLOW_TIMER	3		/*For blinking yellow red*/
-#define BLINKING_LED_GREEN_TIMER	4		/*For blinking green red*/
+#define SEVENT_SEG_SCAN_TIMER		2		/*For 50ms 7Seg display*/
+#define BLINKING_LED_RED_TIMER		3		/*For blinking led red*/
+#define BLINKING_LED_YELLOW_TIMER	4		/*For blinking yellow red*/
+#define BLINKING_LED_GREEN_TIMER	5		/*For blinking green red*/
 //#define AUTO_INCREASE				2		/*500ms increase value*/
 //#define AUTO_MODE_CHANGE_TIMER	3		/*For 10s timer auto change mode*/
 
